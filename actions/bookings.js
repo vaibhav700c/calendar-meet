@@ -38,6 +38,7 @@ export async function createBooking(bookingData) {
     const meetResponse = await calendar.events.insert({
       calendarId: "primary",
       conferenceDataVersion: 1,
+      sendUpdates: "all", // Send booking confirmation emails to attendees
       requestBody: {
         summary: `${bookingData.name} - ${event.title}`,
         description: bookingData.additionalInfo,
