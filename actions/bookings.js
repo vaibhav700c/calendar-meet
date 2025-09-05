@@ -42,8 +42,14 @@ export async function createBooking(bookingData) {
       requestBody: {
         summary: `${bookingData.name} - ${event.title}`,
         description: bookingData.additionalInfo,
-        start: { dateTime: bookingData.startTime },
-        end: { dateTime: bookingData.endTime },
+        start: { 
+          dateTime: bookingData.startTime,
+          timeZone: "Asia/Kolkata" // GMT+5:30 timezone
+        },
+        end: { 
+          dateTime: bookingData.endTime,
+          timeZone: "Asia/Kolkata" // GMT+5:30 timezone
+        },
         attendees: [{ email: bookingData.email }, { email: event.user.email }],
         conferenceData: {
           createRequest: { requestId: `${event.id}-${Date.now()}` },
