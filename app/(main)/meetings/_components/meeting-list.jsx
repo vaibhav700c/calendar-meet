@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { TimezoneDate, TimezoneTime } from "@/components/timezone-display";
 import {
   Card,
   CardContent,
@@ -29,14 +29,11 @@ export default function MeetingList({ meetings, type }) {
           <CardContent>
             <div className="flex items-center mb-2">
               <Calendar className="mr-2 h-4 w-4" />
-              <span>{format(new Date(meeting.startTime), "MMMM d, yyyy")}</span>
+              <TimezoneDate date={meeting.startTime} />
             </div>
             <div className="flex items-center mb-2">
               <Clock className="mr-2 h-4 w-4" />
-              <span>
-                {format(new Date(meeting.startTime), "h:mm a")} -{" "}
-                {format(new Date(meeting.endTime), "h:mm a")}
-              </span>
+              <TimezoneTime startTime={meeting.startTime} endTime={meeting.endTime} />
             </div>
             {meeting.meetLink && (
               <div className="flex items-center">
